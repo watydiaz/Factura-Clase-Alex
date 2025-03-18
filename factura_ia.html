@@ -14,41 +14,54 @@
 </head>
 
 <script>
+    // Variables
+    prod1 = ["Arroz Libra", 2700];
+    sel = ["Seleccione una opcion", 0];
+    prod2 = ["Lenteja", 2000];
+    prod3 = ["Azucar", 2500];
+    prod4 = ["Aceite", 5000];
+    prod5 = ["Sal", 1000];
+    prod6 = ["Frijol", 3000];
+    prod7 = ["Panela", 1500];
+    prod8 = ["Cafe", 4000];
+    prod9 = ["Harina", 2000];
+    prod10 = ["Leche", 2500];
+    prod11 = ["Huevos", 500];
+    prod12 = ["Papa", 1500];
 
-    //Variables
-    sel = [nombre = "Seleccione una opcion", valorU = 0,];
-        prod1 = [nombre = "Arroz Libra", valorU = 2700,];
-        prod2 = [nombre = "Lenteja", valorU = 2000,];
-        prod3 = [nombre = "Azucar", valorU = 2500,];
-        prod4 = [nombre = "Aceite", valorU = 5000,];
-        prod5 = [nombre = "Sal", valorU = 1000,];
-        prod6 = [nombre = "Frijol", valorU = 3000,];
-        prod7 = [nombre = "Panela", valorU = 1500,];
-        prod8 = [nombre = "Cafe", valorU = 4000,];
-        prod9 = [nombre = "Harina", valorU = 2000,];
-        prod10 = [nombre = "Leche", valorU = 2500,];
-        prod11 = [nombre = "Huevos", valorU = 500,];
-        prod12 = [nombre = "Papa", valorU = 1500,];
-
-    //Lista de productos
+    // Lista de productos
     listaProductos = [sel, prod1, prod2, prod3, prod4, prod5, prod6, prod7, prod8, prod9, prod10, prod11, prod12];
 
-
-    //Mostrar Productos dinamicos en el select
+    // Mostrar Productos dinámicos en el select
     function mostrarProductos() {
-        //listar productos en el select
+        // listar productos en el select
         for (i = 0; i < listaProductos.length; i++) {
-            document.write("<option value='" + listaProductos[i][0] + "'>" + listaProductos[i][0] +"</option>");
-
-        } 
+            document.write("<option value='" + listaProductos[i][1] + "'>" + listaProductos[i][0] + "</option>");
+        }
     }
 
-    //funcion para traer dentro el input name precio el valor del precio acorde al producto seleccionado 
+    // Función para actualizar el precio
+    function actualizarPrecio(index) {
+        selectValue = document.f1[`productoSelect${index}`].value;
+        inputPrecio = document.f1[`valorU${index}`];
+        inputPrecio.value = selectValue;
+    }
 
+    //funcion para calcular el subtotal
+    function calcularSubtotal(index){
+        operacion = document.f1[`valorU${index}`].value * document.f1[`cant${index}`].value;
+        document.f1[`subt${index}`].value = operacion;
+        subtotal(); // Llamar a subtotal para actualizar el total general
+    }
 
-
-
-
+    function subtotal(){
+        subt0 = parseFloat(document.f1.subt0.value) || 0;
+        subt1 = parseFloat(document.f1.subt1.value) || 0;
+        subt2 = parseFloat(document.f1.subt2.value) || 0;
+        subt3 = parseFloat(document.f1.subt3.value) || 0;
+        st = subt0 + subt1 + subt2 + subt3;
+        document.f1.subtotal.value = st;
+    }
 </script>
 
 <body>
@@ -87,81 +100,81 @@
             </tr>
             <tr>
                 <td>
-                    <select name="" id="">
+                    <select name="productoSelect0" onchange="actualizarPrecio(0)">
                         <script>
                             mostrarProductos();
                         </script>
                     </select>
                 </td>
                 <td>
-                    <input type="text" name="valorU" id="">
+                    <input type="text" name="valorU0">
                 </td>
                 <td>
-                    <input type="text" name="" id="">
+                    <input type="text" name="cant0" onchange="calcularSubtotal(0)">
                 </td>
                 <td>
-                    <input type="text" name="" id="">
+                    <input type="text" name="subt0">
                 </td>
             </tr>
             <tr>
                 <td>
-                    <select name="" id="">
+                    <select name="productoSelect1" onchange="actualizarPrecio(1)">
                         <script>
                             mostrarProductos();
                         </script>
                     </select>
                 </td>
                 <td>
-                    <input type="text" name="precio" id="">
+                    <input type="text" name="valorU1">
                 </td>
                 <td>
-                    <input type="text" name="" id="">
+                    <input type="text" name="cant1" onchange="calcularSubtotal(1)">
                 </td>
                 <td>
-                    <input type="text" name="" id="">
+                    <input type="text" name="subt1">
                 </td>
             </tr>
             <tr>
                 <td>
-                    <select name="" id="">
+                    <select name="productoSelect2" onchange="actualizarPrecio(2)">
                         <script>
                             mostrarProductos();
                         </script>
                     </select>
                 </td>
                 <td>
-                    <input type="text" name="" id="">
+                    <input type="text" name="valorU2">
                 </td>
                 <td>
-                    <input type="text" name="" id="">
+                    <input type="text" name="cant2" onchange="calcularSubtotal(2)">
                 </td>
                 <td>
-                    <input type="text" name="" id="">
+                    <input type="text" name="subt2">
                 </td>
             </tr>
             <tr>
                 <td>
-                    <select name="" id="">
+                    <select name="productoSelect3" onchange="actualizarPrecio(3)">
                         <script>
                             mostrarProductos();
                         </script>
                     </select>
                 </td>
                 <td>
-                    <input type="text" name="" id="">
+                    <input type="text" name="valorU3">
                 </td>
                 <td>
-                    <input type="text" name="" id="">
+                    <input type="text" name="cant3" onchange="calcularSubtotal(3)">
                 </td>
                 <td>
-                    <input type="text" name="" id="">
+                    <input type="text" name="subt3">
                 </td>
             </tr>
             <tr>
                 <td></td>
                 <td></td>
                 <th>SubTotal</th>
-                <td><input type="number"></td>
+                <td><input type="number" name="subtotal"></td>
             </tr>
             <tr>
                 <td></td>
@@ -175,9 +188,9 @@
                 <th>Total</th>
                 <td><input type="number"></td>
             </tr>
+            <!-- Resto del formulario -->
         </table>
     </form>
-
 </body>
 
 </html>
