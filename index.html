@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Js bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Factura</title>
+</head>
+
+<script>
+    // Variables
+    prod1 = ["Arroz Libra", 2700];
+    sel = ["Seleccione una opcion", 0];
+    prod2 = ["Lenteja", 2000];
+    prod3 = ["Azucar", 2500];
+    prod4 = ["Aceite", 5000];
+    prod5 = ["Sal", 1000];
+    prod6 = ["Frijol", 3000];
+    prod7 = ["Panela", 1500];
+    prod8 = ["Cafe", 4000];
+    prod9 = ["Harina", 2000];
+    prod10 = ["Leche", 2500];
+    prod11 = ["Huevos", 500];
+    prod12 = ["Papa", 1500];
+
+    // Lista de productos
+    listaProductos = [sel, prod1, prod2, prod3, prod4, prod5, prod6, prod7, prod8, prod9, prod10, prod11, prod12];
+
+    // Mostrar Productos dinámicos en el select
+    function mostrarProductos() {
+        // listar productos en el select
+        for (i = 0; i < listaProductos.length; i++) {
+            document.write("<option value='" + listaProductos[i][1] + "'>" + listaProductos[i][0] + "</option>");
+        }
+    }
+
+    // Función para actualizar el precio
+    function actualizarPrecio(index) {
+        selectValue = document.f1[`productoSelect${index}`].value;
+        inputPrecio = document.f1[`valorU${index}`];
+        inputPrecio.value = selectValue;
+    }
+
+    //funcion para calcular el subtotal
+    function calcularSubtotal(index){
+        operacion = document.f1[`valorU${index}`].value * document.f1[`cant${index}`].value;
+        document.f1[`subt${index}`].value = operacion;
+        subtotal(); // Llamar a subtotal para actualizar el total general
+    }
+
+    function subtotal(){
+        subt0 = parseFloat(document.f1.subt0.value) || 0;
+        subt1 = parseFloat(document.f1.subt1.value) || 0;
+        subt2 = parseFloat(document.f1.subt2.value) || 0;
+        subt3 = parseFloat(document.f1.subt3.value) || 0;
+        st = subt0 + subt1 + subt2 + subt3;
+        document.f1.subtotal.value = st;
+    }
+</script>
+
+<body>
+    <center>
+        <h1>Rapitiendas</h1><br>
+    </center>
+
+    <form action="" name="f1">
+        <table align="center" border="1" width="50%">
+            <tr>
+                <td colspan="4">
+                    <center>
+                        <h4>Factura de Venta</h4>
+                    </center>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label for="">Nombre:</label>
+                    <input type="text">
+                </th>
+                <th>
+                    <label for="">Apellido:</label>
+                    <input type="text">
+                </th>
+                <th>
+                    <label for="">Celular:</label>
+                    <input type="text">
+                </th>
+            </tr>
+            <tr>
+                <th>Producto</th>
+                <th>Valor Unitario</th>
+                <th>Cantidad</th>
+                <th>Total</th>
+            </tr>
+            <tr>
+                <td>
+                    <select name="productoSelect0" onchange="actualizarPrecio(0)">
+                        <script>
+                            mostrarProductos();
+                        </script>
+                    </select>
+                </td>
+                <td>
+                    <input type="text" name="valorU0">
+                </td>
+                <td>
+                    <input type="text" name="cant0" onchange="calcularSubtotal(0)">
+                </td>
+                <td>
+                    <input type="text" name="subt0">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <select name="productoSelect1" onchange="actualizarPrecio(1)">
+                        <script>
+                            mostrarProductos();
+                        </script>
+                    </select>
+                </td>
+                <td>
+                    <input type="text" name="valorU1">
+                </td>
+                <td>
+                    <input type="text" name="cant1" onchange="calcularSubtotal(1)">
+                </td>
+                <td>
+                    <input type="text" name="subt1">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <select name="productoSelect2" onchange="actualizarPrecio(2)">
+                        <script>
+                            mostrarProductos();
+                        </script>
+                    </select>
+                </td>
+                <td>
+                    <input type="text" name="valorU2">
+                </td>
+                <td>
+                    <input type="text" name="cant2" onchange="calcularSubtotal(2)">
+                </td>
+                <td>
+                    <input type="text" name="subt2">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <select name="productoSelect3" onchange="actualizarPrecio(3)">
+                        <script>
+                            mostrarProductos();
+                        </script>
+                    </select>
+                </td>
+                <td>
+                    <input type="text" name="valorU3">
+                </td>
+                <td>
+                    <input type="text" name="cant3" onchange="calcularSubtotal(3)">
+                </td>
+                <td>
+                    <input type="text" name="subt3">
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <th>SubTotal</th>
+                <td><input type="number" name="subtotal"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <th>Iva</th>
+                <td><input type="number"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <th>Total</th>
+                <td><input type="number"></td>
+            </tr>
+            <!-- Resto del formulario -->
+        </table>
+    </form>
+</body>
+
+</html>
